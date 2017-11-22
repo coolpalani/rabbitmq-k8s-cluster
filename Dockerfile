@@ -1,11 +1,13 @@
 FROM ubuntu:xenial
 
+ENV RABBITMQ_VER 3.6.14
+
 RUN apt update && \
     apt install -y --no-install-recommends python wget socat erlang erlang-nox logrotate && \
     cd tmp && \
-    wget http://www.rabbitmq.com/releases/rabbitmq-server/v3.5.8/rabbitmq-server_3.5.8-1_all.deb &&\
-    dpkg -i rabbitmq-server_3.5.8-1_all.deb &&\
-    rm -f  rabbitmq-server_3.5.8-1_all.deb &&\
+    wget http://www.rabbitmq.com/releases/rabbitmq-server/v$RABBITMQ_VER/rabbitmq-server_$RABBITMQ_VER-1_all.deb &&\
+    dpkg -i rabbitmq-server_$RABBITMQ_VER-1_all.deb &&\
+    rm -f  rabbitmq-server_$RABBITMQ_VER-1_all.deb &&\
     /usr/sbin/rabbitmq-plugins enable rabbitmq_management && \
     apt clean
 
