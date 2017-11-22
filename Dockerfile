@@ -11,13 +11,13 @@ RUN apt update && \
     /usr/sbin/rabbitmq-plugins enable rabbitmq_management && \
     apt clean
 
-COPY startup.py /usr/bin/
+COPY startup.py /usr/sbin/
 
 RUN echo "asecret" > /var/lib/rabbitmq/.erlang.cookie && \
     chown -R rabbitmq:rabbitmq /var/lib/rabbitmq /var/log/rabbitmq /etc/rabbitmq && \
     chmod 600 /var/lib/rabbitmq/.erlang.cookie && \
-    chown -R rabbitmq:rabbitmq /usr/bin/startup.py && \
-    chmod 777 /usr/bin/startup.py && \
+    chown -R rabbitmq:rabbitmq /usr/sbin/startup.py && \
+    chmod 777 /usr/sbin/startup.py && \
     whereis rabbitmq
 
 USER rabbitmq
